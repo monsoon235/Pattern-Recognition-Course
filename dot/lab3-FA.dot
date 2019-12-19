@@ -1,0 +1,11 @@
+digraph G {
+    rankdir=LR
+    node [shape=circle]
+    empty [color=white,label=""]
+    empty->S [label="start"]
+    S->B [label="a"]
+    B->S [label="b"]
+    B->B [label="a"]
+    B->T [label="a"]
+    T [shape=doublecircle]
+}
