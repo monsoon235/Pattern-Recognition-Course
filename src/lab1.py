@@ -42,7 +42,8 @@ def get_w(s1: np.ndarray, s2: np.ndarray,
 def draw(s1: np.ndarray, s2: np.ndarray,
          w_list: List[np.ndarray],  # 绘制多条线
          info_list: List[str] = None,
-         title: str = None):
+         title: str = None,
+         save_filepath: str = 'a.png'):
     assert len(s1.shape) == 2
     assert len(s2.shape) == 2
     assert s1.shape[1] == 2
@@ -82,7 +83,8 @@ def draw(s1: np.ndarray, s2: np.ndarray,
     plt.legend(loc='best')
     plt.xlabel('x')
     plt.ylabel('y')
-    plt.show()
+    # plt.show()
+    plt.savefig(save_filepath, dpi=200)
 
 
 if __name__ == '__main__':
@@ -101,10 +103,13 @@ if __name__ == '__main__':
     draw(s1, s2, w_list=[w1, w2_1, w2_2],
          info_list=['init w = [0, 0, 0]',
                     f'init w = {w_init.tolist()}',
-                    'change sample order'])
+                    'change sample order'],
+         save_filepath='../pics/lab1-1.png',
+         title='Linear Separable Situation')
 
     # 3
     s1 = np.array([(1, 0), (0, 1)])
     s2 = np.array([(0, 0), (1, 1)])
     w3_list = get_w(s1, s2, iter_limit=100)[-4:]
-    draw(s1, s2, w3_list)
+    draw(s1, s2, w3_list, save_filepath='../pics/lab1-2.png',
+         title='Non-linear Separable Situation')
