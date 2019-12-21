@@ -43,7 +43,7 @@ def draw(s1: np.ndarray, s2: np.ndarray,
          w_list: List[np.ndarray],  # 绘制多条线
          info_list: List[str] = None,
          title: str = None,
-         save_filepath: str = 'a.png'):
+         save_filepath: str = None):
     assert len(s1.shape) == 2
     assert len(s2.shape) == 2
     assert s1.shape[1] == 2
@@ -83,8 +83,10 @@ def draw(s1: np.ndarray, s2: np.ndarray,
     plt.legend(loc='best')
     plt.xlabel('x')
     plt.ylabel('y')
-    # plt.show()
-    plt.savefig(save_filepath, dpi=200)
+    if save_filepath is None:
+        plt.show()
+    else:
+        plt.savefig(save_filepath, dpi=200)
 
 
 if __name__ == '__main__':
